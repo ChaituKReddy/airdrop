@@ -6,6 +6,8 @@ import {Airdrop} from "../src/Airdrop.sol";
 import {IERC20, ERC20Token} from "../src/Mocks/ERC20.sol";
 import {Receiver} from "../src/Mocks/Receive.sol";
 
+/// @title A testing contract for Airdrop functionality using Foundry
+/// @notice This contract is used to test the airdrop functionality for both native ETH and ERC20 tokens
 contract CounterTest is Test {
     Airdrop public airdrop;
     ERC20Token public token;
@@ -20,6 +22,7 @@ contract CounterTest is Test {
     address[] public _wrongUsers;
     uint256[] public _wrongAmounts;
 
+    /// @notice Setup function to initialize test contract instances and state variables
     function setUp() public {
         airdrop = new Airdrop();
         token = new ERC20Token(type(uint256).max, "Airdrop Token", 18, "ADT");
@@ -40,6 +43,8 @@ contract CounterTest is Test {
         }
     }
 
+    /// @notice Tests the airdrop of native ETH to ensure correct functionality
+    /// @dev Simulates various scenarios including reverts and successful transfers
     function testAirDropNative() external {
         vm.startPrank(Alice);
 
@@ -118,6 +123,8 @@ contract CounterTest is Test {
         );
     }
 
+    /// @notice Tests the airdrop of ERC20 tokens to ensure correct functionality
+    /// @dev Simulates various scenarios including reverts and successful transfers
     function testAirDropERC20() external {
         token.transfer(Alice, type(uint256).max);
 
