@@ -38,7 +38,7 @@ forge install
 Gaze into the crystal ball to configure your environmental talismans:
 
 ```bash
-export ETH_RPC_URL="your-ethereum-rpc-url"
+export RPC_URL="your-ethereum-rpc-url"
 export PRIVATE_KEY="your-private-key"
 ```
 
@@ -46,40 +46,58 @@ export PRIVATE_KEY="your-private-key"
 
 Before any grand spellcasting, cleanse your workspace of past enchantments:
 
-bash
+```bash
 forge clean
+```
+
 Weave your smart contract into existence:
 
-bash
+```bash
 forge build
+```
+
 Invoke the spirits to test your contract's fortitude:
 
-bash
+```bash
 forge test
+```
+
 Raise your contract from the depths of the Ethereum network:
 
-bash
-forge create --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY src/Airdrop.sol:Airdrop
+```bash
+forge script script/Airdrop.s.sol --private-key $PRIVATE_KEY --rpc-url $RPC_URL --broadcast
+```
+
 Perform the grand airdrop ritual with precision and care:
 
-bash
+```bash
 cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [CONTRACT_ADDRESS] "airdropNative(address[],uint256[])" [RECIPIENTS] [AMOUNTS]
+```
+
 For ERC20 potions, secure the contract's handling rights:
 
-bash
+```bash
 cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [TOKEN_ADDRESS] "approve(address,uint256)" [CONTRACT_ADDRESS] [AMOUNT]
+```
+
 Finally, release the airdrop spell:
 
-bash
+```bash
 cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [CONTRACT_ADDRESS] "airdropERC20(address,address[],uint256[])" [TOKEN_ADDRESS] [RECIPIENTS] [AMOUNTS]
-🛠️ Scrolls of Upgrading
+```
+
+## 🛠️ Scrolls of Upgrading
+
 To enhance your Airdrop contract with new spells and enchantments:
 
-Craft new incantations and inscribe them onto your contract.
-Rebuild your contract's essence with forge build.
-Redeploy with the arcane knowledge of your new spells.
-🤝 Circle of Conjurers
+1. Craft new incantations and inscribe them onto your contract.
+2. Rebuild your contract's essence with forge build.
+3. Redeploy with the arcane knowledge of your new spells.
+
+## 🤝 Circle of Conjurers
+
 Join our circle and contribute your own spells and charms! Fork the repository, carve your runes, and propose your enhancements through a pull request.
 
-📜 License Scroll
+## 📜 License Scroll
+
 This tome of knowledge is shared under the MIT License. Consult the LICENSE scroll for divinations.
