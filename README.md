@@ -2,7 +2,7 @@
 
 ## 🚀 Project Overview
 
-Dive into the spellbinding world of Ethereum smart contracts with our enchanting Airdrop contract! Crafted in the mystical forges of Foundry, this wizardry piece of code allows you to sprinkle ETH or ERC20 tokens across the blockchain with the grace of a wand's flick. It's a potion of efficiency and gas-cost optimization, all bottled up in a robust, secure, and user-friendly spellbook.
+Dive into the enchanting world of Ethereum smart contracts with our captivating Airdrop contract. Now with the addition of ERC721 tokens, this spellbook not only handles ETH and ERC20 tokens but also allows you to distribute NFTs with a wizard's flourish. Crafted in the mystical forges of Foundry, this magic code empowers you to bestow tokens and NFTs alike across the blockchain, all within an efficient, secure, and user-friendly interface.
 
 ## 🌟 Mystical Features
 
@@ -15,6 +15,8 @@ Dive into the spellbinding world of Ethereum smart contracts with our enchanting
 - **Robust Error Warding:** Shields your transactions from the dark arts of failed transfers and blockchain mishaps.
 
 - **Spell of Simplicity:** With incantations designed for ease, you'll perform airdrops as easily as waving a wand.
+
+- **ERC721 Token Enchantment:** Broaden your airdrop capabilities to include the transfer of NFTs, ensuring your magical creatures and artifacts reach their new guardians without a hitch.
 
 ## 📚 Grimoire of Prerequisites
 
@@ -84,6 +86,26 @@ Finally, release the airdrop spell:
 
 ```bash
 cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [CONTRACT_ADDRESS] "airdropERC20(address,address[],uint256[])" [TOKEN_ADDRESS] [RECIPIENTS] [AMOUNTS]
+```
+
+To perform the new ERC721 token airdrop ritual:
+
+Before casting the airdrop spell, invoke the following incantation to approve the Airdrop contract to transfer your NFTs:
+
+```bash
+cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [NFT_CONTRACT_ADDRESS] "setApprovalForAll(address,bool)" [AIRDROP_CONTRACT_ADDRESS] true
+```
+
+For a galaxy of NFTs to multiple wards:
+
+```bash
+cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [CONTRACT_ADDRESS] "airdropERC721(address,address[],uint256[])" [TOKEN_ADDRESS] [RECIPIENTS] [TOKEN_IDS]
+```
+
+For a single relic or a trove to one ward:
+
+```bash
+cast send --rpc-url $ETH_RPC_URL --private-key $PRIVATE_KEY [CONTRACT_ADDRESS] "airdropERC721(address,address,uint256[])" [TOKEN_ADDRESS] [RECIPIENT] [TOKEN_IDS]
 ```
 
 ## 🛠️ Scrolls of Upgrading
