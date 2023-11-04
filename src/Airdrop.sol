@@ -16,6 +16,18 @@ interface IERC20 {
     ) external returns (bool);
 }
 
+interface IERC721 {
+    /// @notice Transfers the ownership of an NFT from one address to another address
+    /// @param _from The current owner of the NFT
+    /// @param _to The new owner
+    /// @param _tokenId The NFT to transfer
+    function safeTransferFrom(
+        address _from,
+        address _to,
+        uint256 _tokenId
+    ) external;
+}
+
 /// @title Airdrop contract for distributing native currency or ERC20 tokens.
 /// @author deadDosa
 contract Airdrop {
@@ -84,6 +96,45 @@ contract Airdrop {
                 _amounts[i]
             );
             if (!success) revert ERC20TransferFailed();
+
+            unchecked {
+                ++i;
+            }
+        }
+        return true;
+    }
+
+    function airdropERC721(
+        address _token,
+        address[] calldata _users,
+        uint256[] calldata _tokenIds
+    ) external returns (bool) {
+        uint256 len = _users.length;
+        if (len != _tokenIds.length) revert ArrayLengthMismatch();
+
+        for (uint256 i; i < len; ) {
+            IERC721(_token).safeTransferFrom(
+                msg.sender,
+                _users[i],
+                _tokenIds[i]
+            );
+
+            unchecked {
+                ++i;
+            }
+        }
+        return true;
+    }
+
+    function airdropERC721(
+        address _token,
+        address _user,
+        uint256[] calldata _tokenIds
+    ) external returns (bool) {
+        uint256 len = _tokenIds.length;
+
+        for (uint256 i; i < len; ) {
+            IERC721(_token).safeTransferFrom(msg.sender, _user, _tokenIds[i]);
 
             unchecked {
                 ++i;
