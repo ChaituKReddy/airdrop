@@ -13,16 +13,4 @@ docs/
 # Dotenv file
 .env
 
-frontend/node_modules
 
-# dependencies, yarn, etc
-# yarn / eslint
-frontend/.yarn/*
-frontend/!.yarn/patches
-frontend/!.yarn/plugins
-frontend/!.yarn/releases
-frontend/!.yarn/sdks
-frontend/!.yarn/versions
-frontend/.eslintcache
-frontend/.vscode/**
-frontend/.DS_Store
